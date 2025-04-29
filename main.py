@@ -1,12 +1,17 @@
-from flask import Flask, request, jsonify
+"""
+Aplikacja Flask do wyświetlania powitania.
+"""
+
+from flask import Flask
 
 app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    if request.args.get("output") == "json":
-        return jsonify({"name": "Oliwer"})
-    return 'Hello, Oliwer!'
+    """
+    Zwraca powitanie użytkownika.
+    """
+    return 'Hello, World!'
 
 if __name__ == '__main__':
     app.run()
