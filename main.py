@@ -1,4 +1,8 @@
-from hello_world import app
+from flask import Flask
 
-if __name__ == "__main__":
-    app.run()
+app = Flask(__name__)
+
+@app.route('/')
+def hello():
+    return "Hello from Flask!"
+
