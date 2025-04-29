@@ -1,9 +1,9 @@
-# Przed:
+# hello_world/__init__.py
+
+# Usuń zbędny import, jeśli nie jest używany:
+# from hello_world.views import hello_world
+
+# Używamy 'app' tylko raz, więc usuń zbędny import:
 from hello_world.app import app
-from hello_world.views import hello_world
 
-# Po:
-# Importuj tylko to, co jest potrzebne
-from hello_world.app import app  # Lub usuń, jeśli 'app' nie jest używane
-
-
+# Usuń pustą linię na końcu pliku

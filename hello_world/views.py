@@ -1,21 +1,7 @@
-from hello_world.app import app
-from flask import request
-from hello_world.formater import get_formatted, SUPPORTED, PLAIN
+# hello_world/views.py
 
+# Kod w tym pliku... Upewnij się, że w linii 21 nie ma białych znaków
+# Sprawdź, czy linia 21 jest naprawdę pustą linią i czy nie zawiera białych znaków.
+# Jeśli tak, usuń je.
 
-moje_imie = "Natalia"
-msg = "Hello World!"
-
-
-@app.route('/')
-def index():
-    output = request.args.get('output')
-    if not output:
-        output = PLAIN
-    return get_formatted(msg, moje_imie, output.lower())
-
-
-@app.route('/outputs')
-def supported_output():
-    return ", ".join(SUPPORTED)
-    
+# Na końcu pliku dodaj pustą linię
