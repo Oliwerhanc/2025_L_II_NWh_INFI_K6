@@ -1,0 +1,28 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: cimg/python:3.11
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: |
+            python -m pip install --upgrade pip
+            pip install -r requirements.txt
+            pip install -r test_requirements.txt
+      - run:
+          name: Lint with flake8
+          command: |
+            flake8 hello_world test
+      - run:
+          name: Run tests
+          command: |
+            PYTHONPATH=. pytest --verbose -s
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
