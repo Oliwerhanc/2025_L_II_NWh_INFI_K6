@@ -1,17 +1,8 @@
-.PHONY: deps lint test run
+# Makefile
 
-# Instalowanie zależności
-deps:
-	pip install -r requirements.txt
+# Zmienna dla tagu obrazu Docker
+DOCKER_IMAGE_NAME=hello-world-printer
 
-# Uruchamianie lintera
-lint:
-	pylint main.py  # Możesz dodać więcej plików, np. *.py
-
-# Uruchamianie testów
-test:
-	pytest
-
-# Uruchamianie aplikacji
-run:
-	python main.py
+# Zadanie do budowania obrazu Docker
+docker_build:
+	docker build -t $(DOCKER_IMAGE_NAME) .
