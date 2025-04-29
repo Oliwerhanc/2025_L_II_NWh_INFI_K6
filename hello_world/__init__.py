@@ -1,8 +1,5 @@
-import hello_world.views  # ← import przeniesiony na górę
-
-from hello_world import app
-from hello_world.formater import get_formatted
-from hello_world.formater import SUPPORTED, PLAIN
-from flask import request
-
-# Dodaj pustą linię na końcu pliku
+import hello_world.views  # noqa: F401
+from hello_world import app  # noqa: F401
+from hello_world.formater import get_formatted  # noqa: F401
+from hello_world.formater import SUPPORTED, PLAIN  # noqa: F401
+from flask import request  # noqa: F401
