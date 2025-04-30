@@ -12,4 +12,4 @@ test:
 
 
 run:
-	python hello_world/main.py
+	python hello_world/app.py
