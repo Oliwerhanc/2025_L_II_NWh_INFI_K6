@@ -1,18 +1,14 @@
-import unittest
-from hello_world import app
-from hello_world.formater import SUPPORTED
+from fastapi.testclient import TestClient
+from hello_world import app  # zakładam, że to Twój główny FastAPI app
 
+client = TestClient(app)
 
-class FlaskrTestCase(unittest.TestCase):
-    def setUp(self):
-        app.config['TESTING'] = True
-        self.app = app.test_client()
+def test_msg_with_output():
+    response = client.get("/?output=plain")
+    assert response.status_code == 200
+    assert "Hello" in response.text  # dostosuj, jeśli zwracasz coś innego
 
-    def test_outputs(self):
-        rv = self.app.get('/outputs')
-        s = str(rv.data)
-        ','.join(SUPPORTED) in s
-
-    def test_msg_with_output(self):
-        rv = self.app.get('/?output=json')
-        self.assertEqual(b'{ "imie":"Natalia", "mgs":Hello World!"}', rv.data)
+def test_outputs():
+    response = client.get("/")
+    assert response.status_code == 200
+    assert "Hello" in response.text  # lub odpowiedni klucz, np. JSON

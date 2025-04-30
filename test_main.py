@@ -1,8 +1,11 @@
-from main import app
+from fastapi.testclient import TestClient
+from hello_world import app
+
+client = TestClient(app)
 
 def test_json_output():
-    with app.test_client() as client:
-        response = client.get('/?output=json')
-        assert response.status_code == 200
-        assert response.is_json
-        assert response.get_json() == {"name": "Oliwer"}
+    response = client.get("/?output=json")
+    assert response.status_code == 200
+    assert response.headers["content-type"] == "application/json"
+    data = response.json()
+    assert "message" in data

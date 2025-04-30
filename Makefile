@@ -1,4 +1,15 @@
-DOCKER_IMAGE_NAME=hello-world-printer
+.PHONY: deps lint test run
 
-docker_build:
-	DOCKER_BUILDKIT=1 docker build --platform=linux/amd64 -t $(DOCKER_IMAGE_NAME) .
+deps:
+	pip install -r requirements.txt
+	pip install -r test_requirements.txt
+
+lint:
+	flake8 hello_world test
+
+test:
+	PYTHONPATH=. pytest
+
+
+run:
+	python hello_world/main.py
