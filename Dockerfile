@@ -1,14 +1,14 @@
-# Wybierz obraz bazowy Pythona
-FROM python:3.9-slim
+FROM python:3
 
-# Ustawienie katalogu roboczego w kontenerze
-WORKDIR /app
+ARG APP_DIR=/usr/src/hello_world_printer
 
-# Skopiowanie plików aplikacji do kontenera
-COPY . /app
+WORKDIR /tmp
+ADD requirements.txt /tmp/requirements.txt
+RUN pip install -r /tmp/requirements.txt
 
-# Instalacja zależności
-RUN pip install --no-cache-dir -r requirements.txt
+RUN mkdir -p $APP_DIR
+ADD hello_world/ $APP_DIR/hello_world/
+ADD main.py $APP_DIR
 
-# Uruchomienie aplikacji
-CMD ["python", "app.py"]
+CMD PYTHONPATH=$PYTHONPATH:/usr/src/hello_world_printer \
+      FLASK_APP=hello_world flask run --host=0.0.0.0
